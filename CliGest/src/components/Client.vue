@@ -1,12 +1,5 @@
 <template>
   <q-page padding>
-    <q-list separator bordered>
-      <client v-for="client in clients"
-             :key="client.id"
-             :client="client">
-      </client>
-    </q-list>
-
     <h3>Liste des clients</h3>
     <q-list
       class="rounded-borders"
@@ -42,16 +35,16 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 
 export default {
-  name: 'ClientPage',
-
-  computed: {
-    ...mapGetters('clients', ['getClients'])
-  },
-  components: {
-    client: require('components/Client').default
+  // eslint-disable-next-line
+  name: 'client',
+  props: {
+    tache: {
+      type: Object,
+      required: true
+    }
   }
+
 }
 </script>
