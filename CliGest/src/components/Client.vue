@@ -1,27 +1,20 @@
 <template>
-  <q-page padding>
-    <h3>Liste des clients</h3>
-    <q-list
-      class="rounded-borders"
-      bordered
-      separator
-    >
       <!-- Un élément de liste, un client -->
       <q-item clickable v-ripple>
         <!-- Photo du client -->
         <q-item-section avatar>
           <q-avatar>
-            <img src="https://randomuser.me/api/portraits/thumb/women/9.jpg">
+            <img :src="client.picture.thumbnail">
           </q-avatar>
         </q-item-section>
 
         <!-- Nom, prénom et email du client -->
         <q-item-section>
           <q-item-label lines="1">
-            Marchand Pauline
+            {{ client.name.last }} {{ client.name.first }}
           </q-item-label>
           <q-item-label caption lines="2">
-            pauline.marchand@divcom.ch
+            {{ client.email }}
           </q-item-label>
         </q-item-section>
 
@@ -30,21 +23,18 @@
           <q-icon name="email" color="primary"/>
         </q-item-section>
       </q-item>
-    </q-list>
-  </q-page>
 </template>
 
 <script>
 
 export default {
   // eslint-disable-next-line
-  name: 'client',
+  name: 'Client',
   props: {
-    tache: {
+    client: {
       type: Object,
       required: true
     }
   }
-
 }
 </script>

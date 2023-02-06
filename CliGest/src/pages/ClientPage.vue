@@ -1,57 +1,34 @@
 <template>
   <q-page padding>
-    <q-list separator bordered>
-      <client v-for="client in clients"
-             :key="client.id"
-             :client="client">
-      </client>
-    </q-list>
-
     <h3>Liste des clients</h3>
+
     <q-list
       class="rounded-borders"
       bordered
       separator
     >
-      <!-- Un élément de liste, un client -->
-      <q-item clickable v-ripple>
-        <!-- Photo du client -->
-        <q-item-section avatar>
-          <q-avatar>
-            <img src="https://randomuser.me/api/portraits/thumb/women/9.jpg">
-          </q-avatar>
-        </q-item-section>
-
-        <!-- Nom, prénom et email du client -->
-        <q-item-section>
-          <q-item-label lines="1">
-            Marchand Pauline
-          </q-item-label>
-          <q-item-label caption lines="2">
-            pauline.marchand@divcom.ch
-          </q-item-label>
-        </q-item-section>
-
-        <!-- Icône email -->
-        <q-item-section side>
-          <q-icon name="email" color="primary"/>
-        </q-item-section>
-      </q-item>
+      <client v-for="client in clients"
+             :key="client.id"
+             :client="client">
+      </client>
     </q-list>
   </q-page>
 </template>
 
 <script>
+
+import Client from 'components/Client'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'ClientPage',
+  components: { Client },
 
   computed: {
+    clients () {
+      return this.$store.getters['clients/getClients']
+    },
     ...mapGetters('clients', ['getClients'])
-  },
-  components: {
-    client: require('components/Client').default
   }
 }
 </script>

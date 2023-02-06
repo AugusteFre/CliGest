@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 // State : données du magasin
 const state = {
   clients: [
@@ -576,7 +578,9 @@ Actions : méthodes du magasin qui font appel aux mutations
 Elles peuvent être asynchrones !
  */
 const actions = {
+  getClientsApi () {
 
+  }
 }
 
 /*
