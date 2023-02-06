@@ -18,7 +18,7 @@
 <script>
 
 import Client from 'components/Client'
-import { mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'ClientPage',
@@ -27,8 +27,13 @@ export default {
   computed: {
     clients () {
       return this.$store.getters['clients/getClients']
-    },
-    ...mapGetters('clients', ['getClients'])
+    }
+  },
+  methods: {
+    ...mapActions('clients', ['getClientsApi'])
+  },
+  mounted () {
+    this.getClientsApi()
   }
 }
 </script>

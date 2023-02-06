@@ -1,4 +1,4 @@
-import axios from 'axios'
+import { api } from 'boot/axios'
 
 // State : données du magasin
 const state = {
@@ -571,15 +571,23 @@ Mutations : méthode qui manipulent les données
 Les mutations ne peuvent pas être asynchrones !!!
  */
 const mutations = {
-
+  setClients (state, newClients) {
+    state.clients = newClients
+  }
 }
 /*
 Actions : méthodes du magasin qui font appel aux mutations
 Elles peuvent être asynchrones !
  */
 const actions = {
-  getClientsApi () {
-
+  getClientsApi ({ commit }) {
+    api.get('https://randomuser.me/api/?results=100&nat=CH')
+      .then(function (response) {
+        commit('setClients', response.data.results)
+      })
+      .catch(function (error) {
+        console.log(error.response)
+      })
   }
 }
 
