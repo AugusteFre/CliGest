@@ -571,6 +571,11 @@ Mutations : méthode qui manipulent les données
 Les mutations ne peuvent pas être asynchrones !!!
  */
 const mutations = {
+  /**
+   * Remplace le tableau défaut par un nouveau tableau
+   * @param state
+   * @param newClients le nouveau tableau de clients
+   */
   setClients (state, newClients) {
     state.clients = newClients
   }
@@ -580,9 +585,15 @@ Actions : méthodes du magasin qui font appel aux mutations
 Elles peuvent être asynchrones !
  */
 const actions = {
+  /**
+   * Récupère des clients grâce à l'API
+   * @param commit
+   */
   getClientsApi ({ commit }) {
     api.get('https://randomuser.me/api/?results=100&nat=CH')
       .then(function (response) {
+        console.log(response)
+        // l'API renvoie une réponse qui contient un tableau data, dans ce tableau data, les clients sont dans le tableau results
         commit('setClients', response.data.results)
       })
       .catch(function (error) {
@@ -598,6 +609,9 @@ Sert à calculer, trier, filtrer ou formater les donneés
  */
 const getters = {
   getClients (state) {
+    /**
+     * renvoie un tableau de clients
+     */
     return state.clients
   }
 }

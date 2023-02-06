@@ -25,14 +25,18 @@ export default {
   components: { Client },
 
   computed: {
+    // récupère les clients par défaut
     clients () {
       return this.$store.getters['clients/getClients']
     }
   },
   methods: {
+    // mappe l'action de récupérer des clients par API
     ...mapActions('clients', ['getClientsApi'])
   },
+  // mounted est appelé quand le composant est ajouté
   mounted () {
+    // récupère les clients générés par API
     this.getClientsApi()
   }
 }
