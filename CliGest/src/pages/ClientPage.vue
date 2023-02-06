@@ -3,6 +3,7 @@
     <h3>Liste des clients</h3>
 
     <q-list
+      v-if="clients.length"
       class="rounded-borders"
       bordered
       separator
@@ -12,6 +13,7 @@
              :client="client">
       </client>
     </q-list>
+    <p v-else>Pas de clients ...</p>
   </q-page>
 </template>
 
